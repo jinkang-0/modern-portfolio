@@ -1,0 +1,36 @@
+.listContainer {
+    position: relative;
+    padding-left: 1.5em;
+}
+
+.listContainer::before {
+    content: '';
+    background: var(--gray2);
+    width: 2px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateY(-.75em);
+    z-index: -1;
+}
+
+.listContainer > li {
+    position: relative;
+    margin: .5em 0;
+}
+
+.listContainer > li::before {
+    content: '';
+    background: var(--gray2);
+    height: 3px;
+    width: 1em;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    transform: translateX(-1.5em);
+}

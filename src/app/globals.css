@@ -1,0 +1,32 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+    --text: #fff;
+    --background: #282828;
+    --gray2: #4B545C;
+}
+
+html {
+    scroll-behavior: smooth !important;
+}
+
+body {
+    color: var(--text);
+    background: var(--background);
+}
+
+::-webkit-scrollbar {
+    background: #202122;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2d3032;
+    transition: 150ms;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #34383a;
+}
+

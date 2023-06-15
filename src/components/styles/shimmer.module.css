@@ -1,0 +1,27 @@
+.shimmer {
+    position: relative;
+    background: gray;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.shimmer::before {
+    content: '';
+    position: absolute;
+    background: linear-gradient(-110deg, transparent 20%, rgba(255, 255, 255, 0.15) 50%, transparent 80%);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    animation-name: shimmering;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes shimmering {
+    from { transform: translateX(200%) }
+    to { transform: translateX(-200%) }
+}
+
