@@ -7,6 +7,7 @@ import PageHeader from "@/components/PageHeader";
 import IconText from "@/components/IconText";
 import PageFooter from "@/components/PageFooter";
 import ImageLoader from "@/components/ImageLoader";
+import TimeUpdate from "@/components/TimeUpdate";
 
 // add fontawesome solid icons
 library.add(fas);
@@ -58,45 +59,6 @@ export default async function Home() {
     const metaSnapshot = await getDoc(doc(db, 'config', 'mainPageMeta'));
     const metaData = metaSnapshot.data() as MainPageMetaData;
 
-    var lastUpdated: string = parsePastTime(metaData.published.toDate());
-    
-    function parsePastTime(date: Date): string {
-        const now: Date = new Date();
-        const diff: number = now.getTime() - date.getTime();
-        const diffInSeconds: number = diff / 1000;
-        const diffInMinutes: number = diffInSeconds / 60;
-        const diffInHours: number = diffInMinutes / 60;
-        const diffInDays: number = diffInHours / 24;
-        const diffInMonths: number = diffInDays / 30;
-        const diffInYears: number = diffInMonths / 12;
-        
-        var returnString: string = "";
-        if (diffInYears > 1)
-            returnString = appendUnit(diffInYears, 'year');
-        else if (diffInMonths > 1)
-            returnString = appendUnit(diffInMonths, 'month');
-        else if (diffInDays > 1)
-            returnString = appendUnit(diffInDays, 'day');
-        else if (diffInHours > 1)
-            returnString = appendUnit(diffInHours, 'hour');
-        else if (diffInMinutes > 1)
-            returnString = appendUnit(diffInMinutes, 'minute');
-        else if (diffInSeconds > 1)
-            returnString = appendUnit(diffInSeconds, 'second');
-        else
-            return "just now";
-        
-        return returnString + " ago";
-    }
-
-    function appendUnit(x: number, unit: string) {
-        return `${Math.floor(x)} ${unit}${plural(x)}`;
-    }
-
-    function plural(x: number): string {
-        return (Math.floor(x) > 1)? "s" : "";
-    }
-
     // parse data for main page segments
     function dataParser(data: MainPageDataType) {
         return (
@@ -132,7 +94,8 @@ export default async function Home() {
                     </div>
                     <div className="mt-auto mb-4">
                         <h1 className="text-xl sm:text-4xl lg:text-5xl">{ metaData.title }</h1>
-                        <p className="text-grayLink mt-2 text-sm sm:text-md">Last updated {lastUpdated}.</p>
+                        <TimeUpdate className="text-grayLink mt-2 text-sm sm:text-md" />
+                        {/* <p className="text-grayLink mt-2 text-sm sm:text-md">Last updated {lastUpdated}.</p> */}
                         <span className="text-grayLink italic text-xs sm:text-sm">{ metaData.status }</span>
                     </div>
                 </div>
