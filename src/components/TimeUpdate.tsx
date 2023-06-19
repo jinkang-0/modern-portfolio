@@ -1,25 +1,16 @@
 "use client";
 
-import { db } from "@/firebase/firebaseConfig";
-import { Timestamp, doc, getDoc } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default async function TimeUpdate({
+    published,
     className
 }: {
+    published: Date,
     className?: string
 }) {
-    const [lastUpdated, setLastUpdated] = useState("");
+    const [lastUpdated, setLastUpdated] = useState(published);
     
-    useEffect(() => {
-        (async () => {
-            const metaSnapshot = await getDoc(doc(db, 'config', 'mainPageMeta'));
-            const metaData = metaSnapshot.data() as { published: Timestamp };
-            const publishedTime = metaData.published.toDate();
-            setLastUpdated(parsePastTime(publishedTime));
-        })();
-    });
-
     function parsePastTime(date: Date): string {
         const now: Date = new Date();
         const diff: number = now.getTime() - date.getTime();
@@ -57,5 +48,5 @@ export default async function TimeUpdate({
         return (Math.floor(x) > 1)? "s" : "";
     }
 
-    return <p className={className}>Last updated {lastUpdated}</p>;
+    return <p className={className}>Last updated {parsePastTime(lastUpdated)}</p>;
 }

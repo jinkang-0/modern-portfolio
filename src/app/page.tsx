@@ -94,7 +94,7 @@ export default async function Home() {
                     </div>
                     <div className="mt-auto mb-4">
                         <h1 className="text-xl sm:text-4xl lg:text-5xl">{ metaData.title }</h1>
-                        <TimeUpdate className="text-grayLink mt-2 text-sm sm:text-md" />
+                        <TimeUpdate published={ metaData.published.toDate() } className="text-grayLink mt-2 text-sm sm:text-md" />
                         {/* <p className="text-grayLink mt-2 text-sm sm:text-md">Last updated {lastUpdated}.</p> */}
                         <span className="text-grayLink italic text-xs sm:text-sm">{ metaData.status }</span>
                     </div>
