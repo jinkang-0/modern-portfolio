@@ -1,6 +1,7 @@
 import { db } from "@/firebase/firebaseConfig";
 import { Timestamp, collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 import { IconDefinition, IconLookup, IconName, findIconDefinition, library } from "@fortawesome/fontawesome-svg-core";
 import { v4 as uuidv4 } from "uuid";
 import PageHeader from "@/components/PageHeader";
@@ -11,6 +12,7 @@ import TimeUpdate from "@/components/TimeUpdate";
 
 // add fontawesome solid icons
 library.add(fas);
+library.add(fab)
 
 // define custom typing
 type MainPageDataType = {
@@ -65,8 +67,12 @@ export default async function Home() {
             <div key={uuidv4()} className="mb-16">
                 <p className="mt-4 text-md mini:text-lg">{data.title}</p>
                 {data.breakdown.map(bd => {
-                    const lookup: IconLookup = { prefix: 'fas', iconName: `${bd.icon}` };
-                    const icon: IconDefinition = findIconDefinition(lookup);
+                    var lookup: IconLookup = { prefix: 'fas', iconName: `${bd.icon}` };
+                    var icon: IconDefinition = findIconDefinition(lookup);
+                    if (!icon) {
+                        lookup = { prefix: 'fab', iconName: `${bd.icon}` };
+                        icon = findIconDefinition(lookup);
+                    }
                     if (!icon)
                         return;
 
