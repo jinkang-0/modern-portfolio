@@ -124,7 +124,7 @@ export default async function Home() {
 
             </article>
 
-            <PageFooter links={[['Portfolio', '/portfolio'], ['Blog', '/blog']]} />
+            <PageFooter links={[['Portfolio', '/portfolio']]} />
         </>
     );
 }

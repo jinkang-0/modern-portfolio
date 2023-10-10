@@ -18,7 +18,7 @@ export default function PageFooter({
         window.scroll(0, 0);
     }
 
-    const animatedIconLink = "hover:-translate-y-2 transition";
+    const animatedIconLink = "hover:-translate-y-1 transition";
 
     return (
         <footer className={`relative bg-footer w-full h-48 mt-32 ${className}`}>

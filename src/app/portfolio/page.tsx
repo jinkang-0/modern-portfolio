@@ -44,8 +44,7 @@ export default async function Home() {
 
             <PageFooter
                 links={[
-                    ["Home", "/"],
-                    ["Blog", "/blog"]
+                    ["Home", "/"]
                 ]}
             />
         </>

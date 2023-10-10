@@ -7,8 +7,7 @@ export default function NavLinks() {
 
     const links = {
         'Home': '/',
-        'Portfolio': '/portfolio',
-        'Blog': '/blog'
+        'Portfolio': '/portfolio'
     }
 
     const pathname = usePathname();
